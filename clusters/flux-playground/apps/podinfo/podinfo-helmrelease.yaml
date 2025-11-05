@@ -1,0 +1,25 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: podinfo
+  namespace: flux-system
+spec:
+  interval: 5m0s
+  timeout: 2m0s
+  chart:
+    spec:
+      chart: podinfo
+      sourceRef:
+        kind: HelmRepository
+        name: podinfo
+        namespace: flux-system
+      version: ">=6.0.0 <7.0.0"
+  releaseName: podinfo
+  targetNamespace: podinfo
+  values:
+    service:
+      type: ClusterIP
+  valuesFrom:
+    - kind: ConfigMap
+      name: podinfo-values
+      valuesKey: values.yaml

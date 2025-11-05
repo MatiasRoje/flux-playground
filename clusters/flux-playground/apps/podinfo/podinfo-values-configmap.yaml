@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: podinfo-values
+  namespace: flux-system
+data:
+  values.yaml: |
+    replicaCount: 1
+    ui:
+      message: "Hello from Flux"
