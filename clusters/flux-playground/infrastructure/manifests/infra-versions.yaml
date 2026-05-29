@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: infrastructure-versions
+  name: infra-versions
   namespace: flux-system
 data:
   CERT_MANAGER_VERSION: v1.20.2

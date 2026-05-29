@@ -7,6 +7,8 @@ spec:
   interval: 10m
   prune: true
   wait: true
+  dependsOn:
+    - name: infra-manifests
   sourceRef:
     kind: GitRepository
     name: flux-system

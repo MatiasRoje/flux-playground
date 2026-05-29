@@ -3,4 +3,3 @@ kind: Kustomization
 resources:
   - cert-manager-oci.yaml
   - cert-manager-hr.yaml
-  - cert-manager-clusterissuer.yaml

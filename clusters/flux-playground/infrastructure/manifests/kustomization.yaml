@@ -1,6 +1,6 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - infrastructure-versions.yaml
-  - infrastructure-namespace.yaml
+  - infra-versions.yaml
+  - infra-namespace.yaml
   - gateway-api-crds

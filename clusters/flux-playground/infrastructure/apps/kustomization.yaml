@@ -3,6 +3,5 @@ kind: Kustomization
 resources:
   - cert-manager
   - kyverno
-  - kyverno-policies
   - metrics-server
   - traefik
