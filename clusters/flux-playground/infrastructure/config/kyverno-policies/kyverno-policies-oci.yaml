@@ -6,5 +6,8 @@ metadata:
 spec:
   interval: 10m
   url: oci://ghcr.io/kyverno/charts/kyverno-policies
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
   ref:
     tag: ${KYVERNO_POLICIES_VERSION}
