@@ -1,9 +1,0 @@
-apiVersion: source.toolkit.fluxcd.io/v1
-kind: HelmRepository
-metadata:
-  name: podinfo
-  namespace: live
-spec:
-  interval: 1h0m0s
-  timeout: 1m0s
-  url: https://stefanprodan.github.io/podinfo
