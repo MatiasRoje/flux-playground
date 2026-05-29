@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: infrastructure-versions
+  namespace: flux-system
+data:
+  CERT_MANAGER_VERSION: v1.20.2
+  KYVERNO_VERSION: "3.8.1"
+  KYVERNO_POLICIES_VERSION: "3.8.0"
+  METRICS_SERVER_VERSION: "3.13.0"
+  TRAEFIK_VERSION: "40.2.0"
+  GATEWAY_API_VERSION: v1.5.1

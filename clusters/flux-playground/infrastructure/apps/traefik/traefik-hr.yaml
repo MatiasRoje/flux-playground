@@ -1,0 +1,26 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: traefik
+  namespace: infra
+spec:
+  interval: 10m
+  releaseName: traefik
+  chartRef:
+    kind: OCIRepository
+    name: traefik
+    namespace: flux-system
+  dependsOn:
+    - name: kyverno
+      namespace: infra
+  values:
+    providers:
+      kubernetesGateway:
+        enabled: true
+    gateway:
+      enabled: true
+    ports:
+      web:
+        hostPort: 80
+      websecure:
+        hostPort: 443

@@ -1,0 +1,10 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: kyverno-policies
+  namespace: flux-system
+spec:
+  interval: 10m
+  url: oci://ghcr.io/kyverno/charts/kyverno-policies
+  ref:
+    tag: ${KYVERNO_POLICIES_VERSION}
