@@ -15,12 +15,20 @@ spec:
       namespace: infra
   values:
     providers:
+      kubernetesCRD:
+        enabled: false
+      kubernetesIngress:
+        enabled: false
       kubernetesGateway:
         enabled: true
+    ingressClass:
+      enabled: false
     gateway:
-      enabled: true
+      enabled: false
+    service:
+      type: NodePort
     ports:
       web:
-        hostPort: 80
+        nodePort: 30080
       websecure:
-        hostPort: 443
+        nodePort: 30443
