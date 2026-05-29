@@ -16,5 +16,5 @@ spec:
   postBuild:
     substituteFrom:
       - kind: ConfigMap
-        name: infrastructure-versions
+        name: infra-versions
         optional: false
