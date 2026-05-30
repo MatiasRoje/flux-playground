@@ -1,0 +1,23 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: kube-prometheus-stack
+  namespace: monitoring
+spec:
+  interval: 10m
+  releaseName: kube-prometheus-stack
+  chartRef:
+    kind: OCIRepository
+    name: kube-prometheus-stack
+    namespace: flux-system
+  values:
+    grafana:
+      persistence:
+        enabled: false
+    prometheus:
+      prometheusSpec:
+        retention: 24h
+        serviceMonitorSelectorNilUsesHelmValues: false
+        podMonitorSelectorNilUsesHelmValues: false
+        serviceMonitorNamespaceSelector: {}
+        podMonitorNamespaceSelector: {}

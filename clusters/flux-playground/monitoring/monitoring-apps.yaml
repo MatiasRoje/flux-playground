@@ -1,0 +1,20 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: monitoring-apps
+  namespace: flux-system
+spec:
+  interval: 10m
+  prune: true
+  wait: true
+  dependsOn:
+    - name: monitoring-manifests
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  path: ./clusters/flux-playground/monitoring/apps
+  postBuild:
+    substituteFrom:
+      - kind: ConfigMap
+        name: monitoring-versions
+        optional: false

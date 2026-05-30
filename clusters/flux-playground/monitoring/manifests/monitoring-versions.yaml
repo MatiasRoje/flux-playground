@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: monitoring-versions
+  namespace: flux-system
+data:
+  KUBE_PROMETHEUS_STACK_VERSION: "86.1.0"

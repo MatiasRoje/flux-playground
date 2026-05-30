@@ -1,0 +1,18 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: monitoring-manifests
+  namespace: flux-system
+spec:
+  interval: 10m
+  prune: true
+  wait: true
+  # Use infra-config as a deliberate "infra is fully ready" boundary.
+  # This is stricter than technically required for monitoring boot, but it
+  # keeps phase ordering explicit and stable as infra config evolves.
+  dependsOn:
+    - name: infra-config
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  path: ./clusters/flux-playground/monitoring/manifests
