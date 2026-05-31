@@ -4,3 +4,6 @@ resources:
   - infra-versions.yaml
   - infra-namespace.yaml
   - gateway-api-crds
+  # Keep Envoy Gateway CRDs as plain manifests. Installing them through
+  # gateway-crds-helm exceeds Kubernetes' 1 MiB Helm release Secret limit.
+  - envoy-gateway-crds

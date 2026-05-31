@@ -1,17 +1,18 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: traefik
+  name: envoy-gateway
   namespace: monitoring
   labels:
-    app.kubernetes.io/name: traefik
+    app.kubernetes.io/name: gateway-helm
 spec:
   namespaceSelector:
     matchNames:
       - infra
   selector:
     matchLabels:
-      app.kubernetes.io/name: traefik
+      app.kubernetes.io/name: gateway-helm
+      app.kubernetes.io/instance: eg
   endpoints:
     - port: metrics
       path: /metrics

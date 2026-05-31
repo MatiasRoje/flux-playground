@@ -1,13 +1,13 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: OCIRepository
 metadata:
-  name: traefik
+  name: envoy-gateway
   namespace: flux-system
 spec:
   interval: 10m
-  url: oci://ghcr.io/traefik/helm/traefik
+  url: oci://docker.io/envoyproxy/gateway-helm
   layerSelector:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: ${TRAEFIK_VERSION}
+    tag: ${ENVOY_GATEWAY_VERSION}
