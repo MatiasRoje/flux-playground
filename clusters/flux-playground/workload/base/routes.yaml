@@ -1,0 +1,115 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: whoami
+  namespace: dev
+  labels:
+    app.kubernetes.io/part-of: gateway-api-qa
+spec:
+  parentRefs:
+    - name: dev-gateway
+      sectionName: http
+    - name: dev-gateway
+      sectionName: https
+  hostnames:
+    - whoami.dev.localhost
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
+      backendRefs:
+        - name: whoami
+          port: 80
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: admin
+  namespace: dev
+  labels:
+    app.kubernetes.io/part-of: gateway-api-qa
+spec:
+  parentRefs:
+    - group: gateway.networking.k8s.io
+      kind: ListenerSet
+      name: dev-listeners
+      sectionName: admin-http
+  hostnames:
+    - admin.dev.localhost
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
+      backendRefs:
+        - name: whoami
+          port: 80
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: GRPCRoute
+metadata:
+  name: grpc-demo
+  namespace: dev
+  labels:
+    app.kubernetes.io/part-of: gateway-api-qa
+spec:
+  parentRefs:
+    - name: dev-gateway
+      sectionName: grpc
+  hostnames:
+    - grpc.dev.localhost
+  rules:
+    - backendRefs:
+        - name: grpc-backend
+          port: 8080
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: TLSRoute
+metadata:
+  name: tls-demo
+  namespace: dev
+  labels:
+    app.kubernetes.io/part-of: gateway-api-qa
+spec:
+  parentRefs:
+    - name: dev-gateway
+      sectionName: passthrough
+  hostnames:
+    - tls.dev.localhost
+  rules:
+    - backendRefs:
+        - name: tls-backend
+          port: 9443
+---
+apiVersion: gateway.networking.k8s.io/v1alpha2
+kind: TCPRoute
+metadata:
+  name: tcp-demo
+  namespace: dev
+  labels:
+    app.kubernetes.io/part-of: gateway-api-qa
+spec:
+  parentRefs:
+    - name: dev-gateway
+      sectionName: tcp
+  rules:
+    - backendRefs:
+        - name: tcp-backend
+          port: 9000
+---
+apiVersion: gateway.networking.k8s.io/v1alpha2
+kind: UDPRoute
+metadata:
+  name: udp-demo
+  namespace: dev
+  labels:
+    app.kubernetes.io/part-of: gateway-api-qa
+spec:
+  parentRefs:
+    - name: dev-gateway
+      sectionName: udp
+  rules:
+    - backendRefs:
+        - name: udp-backend
+          port: 9001

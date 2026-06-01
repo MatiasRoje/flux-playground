@@ -1,0 +1,34 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: ReferenceGrant
+metadata:
+  name: allow-infra-to-dev-services
+  namespace: dev
+  labels:
+    app.kubernetes.io/part-of: gateway-api-qa
+spec:
+  from:
+    - group: gateway.networking.k8s.io
+      kind: HTTPRoute
+      namespace: infra
+  to:
+    - group: ""
+      kind: Service
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: BackendTLSPolicy
+metadata:
+  name: whoami-backend-tls
+  namespace: dev
+  labels:
+    app.kubernetes.io/part-of: gateway-api-qa
+spec:
+  targetRefs:
+    - group: ""
+      kind: Service
+      name: whoami
+  validation:
+    hostname: whoami.dev.svc.cluster.local
+    caCertificateRefs:
+      - group: ""
+        kind: ConfigMap
+        name: backend-ca

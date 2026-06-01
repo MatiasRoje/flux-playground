@@ -1,0 +1,20 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: ListenerSet
+metadata:
+  name: dev-listeners
+  namespace: dev
+  labels:
+    app.kubernetes.io/part-of: gateway-api-qa
+spec:
+  parentRef:
+    name: dev-gateway
+  listeners:
+    - name: admin-http
+      protocol: HTTP
+      port: 8081
+      hostname: admin.dev.localhost
+      allowedRoutes:
+        namespaces:
+          from: Same
+        kinds:
+          - kind: HTTPRoute
