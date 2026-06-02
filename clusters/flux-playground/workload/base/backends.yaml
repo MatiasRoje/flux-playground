@@ -64,6 +64,8 @@ metadata:
   labels:
     app.kubernetes.io/part-of: gateway-api-qa
 spec:
+  selector:
+    app: whoami
   ports:
     - name: tcp
       port: 9000
@@ -77,6 +79,8 @@ metadata:
   labels:
     app.kubernetes.io/part-of: gateway-api-qa
 spec:
+  selector:
+    app: whoami
   ports:
     - name: tls
       port: 9443
@@ -90,6 +94,8 @@ metadata:
   labels:
     app.kubernetes.io/part-of: gateway-api-qa
 spec:
+  selector:
+    app: whoami
   ports:
     - name: udp
       port: 9001

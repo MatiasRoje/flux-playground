@@ -7,6 +7,9 @@ metadata:
     app.kubernetes.io/part-of: gateway-api-qa
 spec:
   gatewayClassName: envoy-gateway
+  addresses:
+    - type: IPAddress
+      value: 127.0.0.1
   allowedListeners:
     namespaces:
       from: Same
