@@ -9,3 +9,4 @@ resources:
   - listener-set.yaml
   - routes.yaml
   - policies.yaml
+  - ui-referencegrant-ingress-preview.yaml
